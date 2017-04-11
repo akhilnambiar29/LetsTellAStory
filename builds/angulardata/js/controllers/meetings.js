@@ -7,35 +7,36 @@ myApp.controller('MeetingsController', ['$rootScope','$scope','$firebaseAuth','$
 
   auth.$onAuthStateChanged(function(authUser) {
     if(authUser) {
-      var meetingRef = ref.child('users').child(authUser.uid).child('meetings');
-      var meetingsInfo = $firebaseArray(meetingRef); //Get value as array or object.
+      var storyRef = ref.child('users').child('stories');
+      var storyInfo = $firebaseArray(storyRef); //Get value as array or object.
     //  var userObj = $firebaseObject(userRef);
      // $rootScope.currentUser = userObj;
 
-     $scope.meetings = meetingsInfo;
+     $scope.stories = storyInfo;
 
-     meetingsInfo.$loaded().then(function(data){
+     storyInfo.$loaded().then(function(data){
 
-     	$rootScope.howManyMeetings = meetingsInfo.length;
+     	$rootScope.howManyMeetings = storyInfo.length;
      });
 
-     meetingsInfo.$watch(function(data){
+     storyInfo.$watch(function(data){
 
-     	$rootScope.howManyMeetings = meetingsInfo.length;
+     	$rootScope.howManyMeetings = storyInfo.length;
      });
 
-     $scope.addMeeting = function(){
-     	meetingsInfo.$add({
-     		name: $scope.meetingname ,
+     $scope.addStory = function(){
+      console.log("Here");
+     	storyInfo.$add({
+     		name: $scope.storytitle ,
      		date: firebase.database.ServerValue.TIMESTAMP
      	}).then(function(){
-     		$scope.meetingname='';
+     		$scope.storytitle='';
      	});
      };
 
-     $scope.deleteMeeting = function(key){
+     /*$scope.deleteMeeting = function(key){
      	meetingsInfo.$remove(key);
-     };
+     };*/
     }
   });
 
