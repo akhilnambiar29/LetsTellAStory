@@ -7,7 +7,7 @@ myApp.controller('MeetingsController', ['$rootScope','$scope','$firebaseAuth','$
 
   auth.$onAuthStateChanged(function(authUser) {
     if(authUser) {
-      var storyRef = ref.child('users').child('stories');
+      var storyRef = ref.child('stories');
       var storyInfo = $firebaseArray(storyRef); //Get value as array or object.
     //  var userObj = $firebaseObject(userRef);
      // $rootScope.currentUser = userObj;
@@ -25,18 +25,19 @@ myApp.controller('MeetingsController', ['$rootScope','$scope','$firebaseAuth','$
      });
 
      $scope.addStory = function(){
-      console.log("Here");
+      //console.log("Here");
      	storyInfo.$add({
      		name: $scope.storytitle ,
-     		date: firebase.database.ServerValue.TIMESTAMP
+     		date: firebase.database.ServerValue.TIMESTAMP,
+        userCreated : authUser.uid
      	}).then(function(){
      		$scope.storytitle='';
      	});
      };
 
-     /*$scope.deleteMeeting = function(key){
-     	meetingsInfo.$remove(key);
-     };*/
+     $scope.deleteMeeting = function(key){
+     	storyInfo.$remove(key);
+     };
     }
   });
 

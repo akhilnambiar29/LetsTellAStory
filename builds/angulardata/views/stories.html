@@ -1,4 +1,4 @@
-<section >
+<section ng-init="initialise()">
   <form name="myform"
     novalidate>
     <!-- 
@@ -13,11 +13,11 @@
 -->
 <div class="textintro" style="text-align: center;"><h1>{{storyName}}</h1></div>
 <div ng-repeat="storypoint in storypoints track by $index">
-  <p> {{currentUser.firstname}} > {{storypoint}}
+  <p> {{storypoint.sentBy}} > {{storypoint.content}}
 </div>
     <!-- <fieldset> -->
       <input type="text" name="data" placeholder="Enter a sentence here"
-       ng-model="user.data" ng-required="true" style="position:fixed; right:0;bottom: 0" autocomplete="off" autofocus>
+       ng-model="user.data" ng-required="true" style="position:fixed; right:0;bottom: 0;" autocomplete="off" autofocus>
 
 
      <!--  <input type="password" name="password" placeholder="Password"
@@ -28,7 +28,7 @@
 
     <!-- </fieldset> -->
 
-    <button type="submit" class="btn hidden-button" ng-click="submitStory(user.data)" ng-disabled="myform.$invalid"
+    <button type="submit" class="btn hidden-button" ng-click="submitStory(user.data , currentUser.firstname)" ng-disabled="myform.$invalid"
       >Enter</button>
     <!-- <p>or <a ng-href="#/register">register</a></p> -->
 
