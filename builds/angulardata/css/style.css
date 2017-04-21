@@ -86,6 +86,7 @@ body  {
   color: #555459;
   line-height: 1.5rem;
     *zoom: 1;
+    overflow-x:hidden
 }
 
 .card {
@@ -663,52 +664,21 @@ input.ng-valid.ng-touched {
   visibility: hidden;
 }
 
-::-webkit-input-placeholder {
-    color:    #999;
-}
-:-moz-placeholder {
-    color:    #999;
-}
-::-moz-placeholder {
-    color:    #999;
-}
-:-ms-input-placeholder {
-    color:    #999;
+[scroll-glue]{
+        height: 60vh;
+        width:98vw;
+        margin: 0 auto;
+        position: absolute;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border: 1px solid gray;
+        left:2%;
+        top:30%;
+        margin-left: -150px;
+        margin-right: -150px
+
 }
 
-.panel-body
-{
-    overflow-y: scroll;
-    height: 250px;
-}
-
-.chat
-{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.chat li
-{
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px dotted #B3A9A9;
-}
-
-.chat li.left .chat-body
-{
-    margin-left: 60px;
-}
-
-.chat li.right .chat-body
-{
-    margin-right: 60px;
-}
-
-
-.chat li .chat-body p
-{
-    margin: 0;
-    color: #777777;
+.panel-body  {
+    word-break:break-all
 }

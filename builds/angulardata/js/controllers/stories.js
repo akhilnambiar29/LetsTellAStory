@@ -1,25 +1,35 @@
 myApp.controller('StoriesController', ['$rootScope','$scope',
-	'$firebaseAuth','$firebaseArray', '$routeParams' , '$firebaseObject',
-	function($rootScope,$scope,$firebaseAuth,$firebaseArray,$routeParams,$firebaseObject) {
+	'$firebaseAuth','$firebaseArray', '$routeParams' , '$firebaseObject', '$anchorScroll','$location',
+	function($rootScope,$scope,$firebaseAuth,$firebaseArray,$routeParams,$firebaseObject,$anchorScroll,$location) {
 
  	$scope.storypoints = [];
 
  	$scope.whichStory = $routeParams.uId;
 
+ 	$scope.glued = true;
+
  	ref = firebase.database().ref().child('story_content').child($scope.whichStory);
  	var storyMessage = $firebaseArray(ref);
+
+ 	$scope.value = 0;
 
  	$scope.initialise = function(){
  		console.log(storyMessage);
  		$scope.storypoints = storyMessage;
  	};
 
- 	
+ 	$scope.checkLoaded = function(){
+ 		if($scope.value ==1){
+ 			return true;
+ 		}
+ 	};
 
  	
 
  	
-    /*var storyNameRef = $firebaseObject(ref);
+
+ 	ref2 = firebase.database().ref().child("stories").child($scope.whichStory);
+    var storyNameRef = $firebaseObject(ref2);
     var storyName = '';
 
     storyNameRef.$loaded().then(function(data) {
@@ -28,7 +38,7 @@ myApp.controller('StoriesController', ['$rootScope','$scope',
         // DO WHATEVER
     }).catch(function(error) {
         console.error("Error:", error);
-    });*/
+    });
 
     /*ref2 = firebase.database().ref()
     .child('users').child('stories').child($scope.whichStory).child('story'); // adding values to firebase*/
@@ -41,6 +51,8 @@ myApp.controller('StoriesController', ['$rootScope','$scope',
 
 	$scope.submitStory = function(data,firstname){
 			$scope.user.data = '';
+			$location.hash('data');
+			$anchorScroll();
 		storyMessage.$add({
 			content: data , 
      		sentBy: firstname ,

@@ -11,12 +11,36 @@
         ng-show="message"> {{ message }}</p>
     </div>
 -->
-<div class="textintro" style="text-align: center;"><h1>{{storyName}}</h1></div>
-<div ng-repeat="storypoint in storypoints track by $index">
-  <p> {{storypoint.sentBy}} > {{storypoint.content}}
+<div class="textintro" style="text-align: center;"><h1 style="margin-bottom: 5px">{{storyName}}</h1></div>
+<!--   <p> <div class="bootstrap-iso" ng-class="{'row animated fadeInRight' : $last}" ng-repeat="storypoint in storypoints track by $index">{{storypoint.sentBy}} >  -->
+   <!-- <div class="col-sm-12"> -->
+  <!-- <img src="../images/icons/user.png" class="img-responsive" style="display: inline-block;"></img> <div style="display: inline-block;">{{storypoint.sentBy}}</div> -->
+
+<!-- <div class="panel panel-default" ><div class="panel-body">{{storypoint.content}}</div></div>
+</div> 
+</div> -->
+
+<div class="container bootstrap-iso"> 
+  <div class="row" scroll-glue>
+    <div class="col-sm-12">
+      <div ng-repeat="storypoint in storypoints track by $index" class="row animated" >
+        <div class="col-sm-12">
+            <img src="../images/icons/user.png" class="img-responsive img-thumbnail" style="float: left"></img><!-- {{storypoint.sentBy}} -->
+            <div class="panel panel-default" style="margin-left: 45px">
+                <div class="panel-body" >{{storypoint.content}} 
+                <div style="float: right" style="position: relative;"><h6>{{storypoint.date | date : "HH:mm dd/MM"}}</h6>
+                </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
 </div>
+</div>
+
+<!-- </div> -->
     <!-- <fieldset> -->
-      <input type="text" name="data" placeholder="Enter a sentence here"
+      <input type="text" name="data" placeholder="Enter a sentence here" id="data" 
        ng-model="user.data" ng-required="true" style="position:fixed; right:0;bottom: 0;" autocomplete="off" autofocus>
 
 

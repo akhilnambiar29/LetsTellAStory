@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', 
-  ['ngRoute', 'firebase']);
+  ['ngRoute', 'firebase','luegg.directives','ngMaterial']);
 
 myApp.run(['$rootScope', '$location', function($rootScope, $location) {
   $rootScope.$on('$routeChangeError', function(event, next, previous, error) {
